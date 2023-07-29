@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block content %}
+<div class="contaner">
+    <h3>{{ task.title | upper}} Task</h3>
+    <hr>
+    <table>
+        <tr>
+            <th> Title </th>
+            <td> {{task.title}}</td>
+        </tr>
+        <tr>
+            <th> Description </th>
+            <td> {{task.decription}}</td>
+        </tr>
+        <tr>
+            <th> Assgined To </th>
+            <td> {{task.assigned_to}}</td>
+        </tr>
+        <tr>
+            <th> Task Lever</th>
+            <td> {{task.difficulty}}</td>
+        </tr>
+        <tr>
+            <th> Task Creation date</th>
+            <td> {{task.created_at}}</td>
+        </tr>
+        <tr>
+            <th> Last Update</th>
+            <td> {{task.updated_at}}</td>
+        </tr>
+    </table>
+    <a href="{% url  'task-fiels' task.pk %} " role="button" style="margin-top: 15px;">
+        💾 View Task File
+        </a>
+    <hr>
+    <p style="margin-top: 35px;">
+        <a href="{% url  'task-update' task.pk %} " role="button" style="margin-top: 15px;">
+        ✨ Edit the Task
+        </a>
+        <a href="{% url  'task-delete' task.pk %} " role="button" style="margin-top: 15px; margin-left: 20px;">
+            ❌ Delete the Task
+            </a>
+    </p>
+
+    <div class="Comment">
+        {% if not noComment%}
+        <h2>Comments</h2>{% endif %}{% for comment in comments %}
+        <div class="box">
+            <p>{{comment.comment}}</p>
+            <span class="is-small has-text-grey-light">
+       {{ comment.created_at }} by <b> {{ comment.user.username }} </b>
+    </span>
+        </div> {% endfor %}
+
+
+
+        <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+            <button class="button is-success is-fullwidth is-medium mt-5" type="submit">Comment
+</button>
+        </form>
+    </div>
+    <p style="margin-top: 25px;"><a href="{% url 'all-tasks'  %}" style="margin-bottom:60px;">
+        Back
+        </a></p>
+</div>
+{% endblock %}

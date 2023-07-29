@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Simple.css-->
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <title> To-do Lists</title>
+
+</head>
+
+<style>
+    /* Custom CSS */
+    
+     :root {
+        --accent: #6e48ad;
+        --accent-bg: white;
+        --bg: #fff;
+        --text: #212121;
+        --text-light: #585858;
+        --border: #d8dae1;
+        --code: #d81b60;
+        --preformatted: #444;
+    }
+    
+    article {
+        background-color: var(--marked);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 1em;
+        margin: 1em 0;
+    }
+    
+    ul {
+        list-style-type: none;
+    }
+    
+    .center-class {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    article ul li {
+        background-color: #c6df28;
+        padding: 20px;
+        border-radius: 3px;
+        margin-top: 10px;
+    }
+    
+    article ul li:last-child {
+        margin-bottom: 35px;
+    }
+    
+    article ul li h3 {
+        margin: 0;
+    }
+    
+    ul li a {
+        text-decoration: none;
+        color: var(--text);
+    }
+    
+    u h2 {
+        text-align: center;
+    }
+    
+    h2,
+    h4 {
+        margin-top: 0;
+    }
+    
+    hr {
+        background: var(--accent);
+        border-color: var(--accent);
+    }
+    
+    button,
+    a[role="button"] {
+        color: #05502d;
+        text-decoration: none;
+        outline: #05502d solid 0.5px;
+        margin-left: 5px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    input,
+    select,
+    textarea {
+        width: 100%;
+    }
+    
+    .list-title h1,
+    .list-title h2 {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    
+    .list-title p {
+        margin-left: 10px;
+        padding: 10px 10px 10px 15px;
+        background-color: #e6e6e6;
+        border-radius: 5px;
+    }
+    
+    .list-title span {
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+    
+    article h3 {
+        margin: 8px;
+    }
+    
+    .submit-button {
+        color: #ffffff;
+        text-decoration: none;
+        margin-left: 5px;
+        padding: 10px 25px;
+        border-radius: 5px;
+        font-size: 20px;
+        margin: 10px auto;
+        background-color: #320ae9;
+        margin-left: 35%;
+    }
+    
+    .list1 {
+        background-color: #585858;
+        padding: 8px;
+        margin: 20px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+    .list1 a {
+        color: #f5e2e2;
+        text-decoration: none;
+    }
+    
+    li::marker {
+        color: black;
+    }
+    
+    .task {
+        padding: 20px;
+        margin: 15px;
+        background-color: antiquewhite;
+    }
+    
+    .task h3 {
+        margin-top: 5px;
+    }
+    
+    .task p {
+        color: #8d8070;
+    }
+    
+    .box {
+        background-color: #e6e6e6;
+        padding: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+
+<body>{% if user.is_superuser %}
+    <p>Admin</p>{% else %}
+    <p>User</p>{% endif %}
+
+    <header>
+        <h1>Task Mangment</h1>
+        <a href="{% url 'all-tasks'  %}">All Tasks</a>
+
+
+    </header>
+
+    <main>
+        {% block content %}
+
+        <p> content
+        </p>
+        {% endblock content %}
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}{% load static %}{% block content%}
+<div class="list-title">
+    <h1>{{task.title}}</h1>
+
+
+</div>
+
+<article>
+    {% if no_file %}
+    <h1>There is no file for this Task </h1>{% else %}
+    <form action=""> {% for file in task_files %}
+
+        <h2>
+            <a href="{% url 'update-file' file.task.pk file.pk %}"> File</a>
+        </h2>
+
+
+        <a href="{% url 'download-file' file.pk %}" target="_blank">{{file.file}}</a> <span>(download)</span>{% endfor%} </form> {% endif %}
+    <hr>
+    <p style="margin-top: 35px;">
+        <a href="{% url  'upload-file' task.pk %} " role="button" style="margin-top: 15px;">
+            ➕ Add File to This Task
+        </a>
+
+    </p>
+    <a href="{% url 'task-view' task.pk %}">
+        Back
+        </a>
+
+
+</article>
+
+{% endblock content%}

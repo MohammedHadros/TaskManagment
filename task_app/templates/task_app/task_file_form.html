@@ -1,0 +1,27 @@
+{% extends "base.html" %}{% block content%}
+<div class="list-title">
+    <h1>{{title}}</h1>
+
+
+</div>
+
+<article>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.as_p }}
+        <hr>
+
+        <button type="submit" class="submit-button"> {{btn_text}} </button>
+    </form>
+    {% if update %}
+    <a href="{% url 'task-view' task.pk  %}">
+        Back
+        </a> {% else %}
+    <a href="{% url 'all-tasks'  %}">
+        Back
+        </a> {% endif %}
+
+
+</article>
+
+{% endblock content%}

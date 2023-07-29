@@ -1,0 +1,27 @@
+{% extends "base.html" %}{% block content%}
+<h2>All Tasks </h2>
+{% if messages %}
+<ul class="messages" style="background-color:#ccc">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<article>
+    <ul>{% for task in tasks%}
+        <li>
+            <h3>
+                <a href="{% url 'task-view' task.pk %}">{{task.title}}</a>
+            </h3>
+            <p><b>{{task.assigned_to|title}}</b> , {{task.created_at}}</p>
+        </li>{% endfor %}
+
+    </ul>
+    <a href="{% url 'task-create' %}" role="button" style="color: black; margin-top: 25px;">
+        ✨ Create New Task
+        </a>
+</article>
+
+{% endblock content%}
