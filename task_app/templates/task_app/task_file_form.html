@@ -14,10 +14,10 @@
         <button type="submit" class="submit-button"> {{btn_text}} </button>
     </form>
     {% if update %}
-    <a href="{% url 'task-view' task.pk  %}">
+    <a href="{% url 'task-fiels' task.pk  %}">
         Back
         </a> {% else %}
-    <a href="{% url 'all-tasks'  %}">
+    <a href="{% url 'task-fiels' task.pk  %}">
         Back
         </a> {% endif %}
 

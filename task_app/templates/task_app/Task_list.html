@@ -10,6 +10,9 @@
 </ul>
 {% endif %}
 <article>
+    {% if no_tasks %}{% if user.is_superuser %}
+    <h3>!No Task has been created yet</h3> {% else %}
+    <h3>!No Task has been assgined to you yet</h3>{% endif%} {% endif %}
     <ul>{% for task in tasks%}
         <li>
             <h3>
@@ -18,10 +21,14 @@
             <p><b>{{task.assigned_to|title}}</b> , {{task.created_at}}</p>
         </li>{% endfor %}
 
-    </ul>
+    </ul>{% if user.is_superuser %}
     <a href="{% url 'task-create' %}" role="button" style="color: black; margin-top: 25px;">
         ✨ Create New Task
-        </a>
+        </a>{% else %}
+        <a href="{% url 'create-user-tasks' %}" role="button" style="color: black; margin-top: 25px;">
+            ✨ Create New Task
+            </a>
+            {% endif%}
 </article>
 
 {% endblock content%}

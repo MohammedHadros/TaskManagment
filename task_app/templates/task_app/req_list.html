@@ -1,0 +1,37 @@
+{% extends "base.html" %}{% block content%}
+<h2>All Request </h2>
+{% if messages %}
+<ul class="messages" style="background-color:#ccc">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<article>
+    {% if noreq %}
+    <h3>!No Request has been assgined to you yet</h3>{% endif %}
+    <ul>{% for request in requests %}
+        <li>
+            <h3>{% if user.is_superuser %}
+                {{request.task.title}}
+                {% else %}
+                <a href="{% url 'user-response' user.pk request.pk %}">{{request.task.title}}</a>{% endif %}
+                
+            </h3>
+            <h4 style="margin-top: 20px; margin-bottom: 0px;">Creator : {{request.creator}}</h4>
+            <h4> {% if request.status == 3 %}
+                Status : Rejected
+                {% elif request.status == 2 %}
+                Status : Approved
+                {% else %}
+                Status : No responser
+                {% endif %}</h4>
+            <p><b>Old User: {{request.old_user|title}}</b> , {{request.created_at}}</p>
+        </li>{% endfor %}
+
+    </ul>
+</article>
+
+{% endblock content%}

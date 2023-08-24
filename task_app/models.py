@@ -34,3 +34,20 @@ class Task_Files(models.Model):
 
     def __str__(self):
         return str(self.task.title)
+
+
+
+status_num = 3
+stat = range(1, status_num + 1)
+stat_text=("No responser" , "approved" , "rejected" )
+class Chaange_request(models.Model):
+    task= models.ForeignKey(Task, on_delete=models.CASCADE )
+    old_user=models.ForeignKey(User , on_delete=models.CASCADE,related_name="oldUser")
+    new_user=models.ForeignKey(User , on_delete=models.CASCADE,related_name="newUser")
+    creator =models.ForeignKey(User , on_delete=models.CASCADE,related_name="creator")
+    status=models.IntegerField(choices=zip(stat,stat_text) , default=0)#
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"From {self.old_user} to {self.new_user} by {self.creator}"

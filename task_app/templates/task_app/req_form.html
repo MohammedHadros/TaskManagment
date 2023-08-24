@@ -1,0 +1,46 @@
+{% extends "base.html" %}{% block content%}
+<div class="list-title">
+    <h1>{{title}}</h1>
+    {% if req %}
+     <p>
+  Task : {{req.task.title}}
+    </p>
+    <p>
+        Old User : {{req.old_user}}
+          </p>
+          <p>
+            Creator : {{req.creator}}
+              </p>
+              <p>{% if req.status == 2 %}
+                Status : Rejected
+                {% elif req.status == 1 %}
+                Status : Approved
+                {% else %}
+                Status : No responser
+                {% endif %}
+                  </p>
+    {% endif %}
+
+
+</div>
+
+<article>
+
+    <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <hr>
+
+        <button type="submit" class="submit-button"> {{btn_text}} </button>
+    </form>
+    {% if update %}
+    <a href="{% url 'task-view' task.pk  %}">
+        Back
+        </a> {% else %}
+    <a href="{% url 'all-tasks'  %}">
+        Back
+        </a> {% endif %}
+
+
+</article>
+
+{% endblock content%}

@@ -31,9 +31,17 @@
     <a href="{% url  'task-fiels' task.pk %} " role="button" style="margin-top: 15px;">
         💾 View Task File
         </a>
+        {% if has_req  %} 
+        <a href="{% url  'change-user-request-up' task.pk has_req.pk %} " role="button" style="margin-top: 15px; margin-left: 25px;">
+            ✉ See Request  change 
+            </a>{% else  %}
+        <a href="{% url  'change-user-request' task.pk  task.assigned_to.id %} " role="button" style="margin-top: 15px; margin-left: 25px;">
+            ✉ Request to change user
+            </a>{% endif %}
+
     <hr>
     <p style="margin-top: 35px;">
-        <a href="{% url  'task-update' task.pk %} " role="button" style="margin-top: 15px;">
+        <a href="{% url  'task-update' task.pk  %} " role="button" style="margin-top: 15px;">
         ✨ Edit the Task
         </a>
         <a href="{% url  'task-delete' task.pk %} " role="button" style="margin-top: 15px; margin-left: 20px;">
@@ -59,8 +67,15 @@
 </button>
         </form>
     </div>
+    {% if user.is_superuser %}
     <p style="margin-top: 25px;"><a href="{% url 'all-tasks'  %}" style="margin-bottom:60px;">
         Back
         </a></p>
+    {% else %}
+    <p style="margin-top: 25px;"><a href="{% url 'all-user-tasks' user.pk %}" style="margin-bottom:60px;">
+        Back
+        </a></p>{% endif %}
+
+
 </div>
 {% endblock %}
