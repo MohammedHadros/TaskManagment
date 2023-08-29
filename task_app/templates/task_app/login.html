@@ -8,12 +8,22 @@
             {% csrf_token %}
             <div class="row">
                 <div class="col-lg-12">
+                    {% if messages %}
+<ul class="messages" style="background-color:#ccc">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
 
                     <div class="col-lg-12">
                         <div class="login-form">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Username</label>
+                                    
                                     <input class="form-control" type="text" name="user-name" placeholder="E-mail / Username" required>
                                 </div>
                                 <div class="col-md-6">

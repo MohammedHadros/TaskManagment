@@ -5,20 +5,46 @@
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-6">
+                                        {% if messages %}
+<ul class="messages" style="background-color:#ccc">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
                     <label>Username</label>
-                    <input class="form-control" type="text" name="username" placeholder="username" required>
+                    {% if username %}
+                    <input class="form-control" type="text" name="username" placeholder="E-mail / Username" required value="{{username}}">
+                    {% else %}
+                    <input class="form-control" type="text" name="username" placeholder="E-mail / Username" required>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label>First Name</label>
+                    <label>First Name</label>{% if first_name %}
+                    <input class="form-control" type="text" name="first_Name" placeholder="First Name" required value="{{first_name}}">
+                    {% else %}
                     <input class="form-control" type="text" name="first_Name" placeholder="First Name" required>
+                    {% endif %}
+                    
                 </div>
                 <div class="col-md-6">
-                    <label>Last Name"</label>
+                    <label>Last Name"</label>{% if last_name %}
+                    <input class="form-control" type="text" name="last_Name" placeholder="Last Name" required value="{{last_name}}">
+                    {% else %}
                     <input class="form-control" type="text" name="last_Name" placeholder="Last Name" required>
+                    {% endif %}
+                    
                 </div>
                 <div class="col-md-6">
-                    <label>E-mail</label>
+                    <label>E-mail</label>{% if email %}
+                    <input class="form-control" type="text" name="email" placeholder="E-mail" required value="{{email}}">
+                    {% else %}
                     <input class="form-control" type="text" name="email" placeholder="E-mail" required>
+                    
+                    {% endif %}
+                    
                 </div>
                 <div class="col-md-6">
                     <label>Password</label>

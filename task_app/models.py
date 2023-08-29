@@ -1,5 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    is_email_varivied=models.BooleanField(default=False)
+
+    def __str_(self):
+        return self.email
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Create your models here.
 difficulty_MAX = 5

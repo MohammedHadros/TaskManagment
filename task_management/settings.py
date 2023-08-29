@@ -84,7 +84,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
+AUTH_USER_MODEL = 'task_app.User'
 AUTH_PASSWORD_VALIDATORS = [
     # {
     #     "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -128,3 +128,14 @@ import os
 #
 MEDIA_ROOT = os.path.join(BASE_DIR, "task_app/media")
 MEDIA_URL = "/media/"
+
+#  EMAIL CONFIG
+EMAIL_FROM_USER='hadrostestemail@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'hadrostestemail@gmail.com'
+EMAIL_HOST_PASSWORD = 'mtpxpnmpwaxoecwm'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+

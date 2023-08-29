@@ -18,6 +18,8 @@ urlpatterns = [
     path("register" , register , name="register"),
     path("login" , Login_view , name="Login"),
     path("logout" , Logout , name="Logout"),
+    path("activate-user/<uidb64>/<token>" ,activate_user , name="activate"),
+#     path("activate-user" ,activate_user , name="activate"),
     path("tasks/<int:pk>" , User_View_tasks , name="all-user-tasks"),
     path("tasks/new" , login_required(CreateTaskUser.as_view()) 
          , name="create-user-tasks"),
